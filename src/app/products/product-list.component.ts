@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
 
   constructor(private productService: ProductService) {
-    this.listFilter = 'cart';
   }
 
   onRatingClicked(message: string): void {
