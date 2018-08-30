@@ -28,7 +28,6 @@ export class ProductListComponent implements OnInit {
   products: IProduct[] = [];
 
   constructor(private productService: ProductService) {
-    this.filteredProducts = this.products;
     this.listFilter = 'cart';
   }
 
@@ -47,6 +46,6 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('In OnInit');
+    this.products = this.productService.getProducts();
+    this.filteredProducts = this.products;
   }
-}
