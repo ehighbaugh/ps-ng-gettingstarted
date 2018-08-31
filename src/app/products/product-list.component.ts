@@ -48,3 +48,4 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.getProducts();
     this.filteredProducts = this.products;
   }
+}
