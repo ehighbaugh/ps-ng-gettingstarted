@@ -12,7 +12,7 @@ import { IProduct } from './product';
 export class ProductService {
   private productUrl = 'api/products/products.json';
 
-  contstructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.productUrl).pipe(
