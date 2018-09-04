@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
   templateUrl: './product-detail.component.html',
@@ -9,27 +10,30 @@ import { IProduct } from './product';
 })
 export class ProductDetailComponent implements OnInit {
   pageTitle = 'Product Detail';
-  product: IProduct;
+  errorMessage = '';
+  product: IProduct | undefined;
 
   constructor(private route: ActivatedRoute,
-              private router: Router) { }
+    private router: Router,
+    private productService: ProductService) {
+  }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.pageTitle += `: ${id}`;
-    this.product = {
-      'productId': id,
-      'productName': 'Red Bull',
-      'productCode': 'HEL-012',
-      'releaseDate': 'December 27, 2014',
-      'description': 'A can of red bull',
-      'price': 4.99,
-      'starRating': 2.5,
-      'imageUrl': 'https://openclipart.org/detail/283385/redbull'
-    };
+    const param = this.route.snapshot.paramMap.get('id');
+    if (param) {
+      const id = +param;
+      this.getProduct(id);
+    }
+  }
+
+  getProduct(id: number) {
+    this.productService.getProduct(id).subscribe(
+      product => this.product = product,
+      error => this.errorMessage = <any>error);
   }
 
   onBack(): void {
     this.router.navigate(['/products']);
   }
+
 }
