@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductDetailGuard } from './products/product-detail.guard';
 import { ProductModule } from './products/product.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductModule } from './products/product.module';
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full'}
     ]),
-    ProductModule
+    ProductModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })
