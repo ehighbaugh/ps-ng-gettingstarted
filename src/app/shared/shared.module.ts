@@ -10,7 +10,8 @@ import { ConvertToSpacesPipe } from './convert-to-spaces.pipe';
     CommonModule
   ],
   declarations: [
-    StarComponent
+    StarComponent,
+    ConvertToSpacesPipe
   ],
   exports: [
     StarComponent,
